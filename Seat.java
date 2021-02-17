@@ -1,32 +1,44 @@
 package bogdan.iacob;
 
-public class Seat implements Comparable<Seat>{
+import javax.swing.*;
 
-    private final String seatNumber;
+public class Seat extends JToggleButton implements Comparable<Seat> {
+
+    private static String seatNumber;
     private double price;
     private boolean reserved = false;
 
-    public Seat(String seatNumber) {
+    public Seat(String seatNumber, double price) {
         this.seatNumber = seatNumber;
         this.price = price;
     }
 
-    public boolean reserve(){
-        if(!this.reserved){
+//    public Seat(int x, int y, int width, int height,String seatNumber, double price) {
+//        super(seatNumber);
+//        this.price = price;
+//        setBounds(x, y, width, height);
+//
+////        this.gui = gui;
+////        this.gui.add(this);
+//        addActionListener(this);
+//    }
+
+    public boolean reserve() {
+        if (!this.reserved) {
             this.reserved = true;
             System.out.println("Seat " + seatNumber + " reserved");
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    public boolean cancel(){
-        if(this.reserved){
+    public boolean cancel() {
+        if (this.reserved) {
             this.reserved = false;
             System.out.println("Reservation of seat " + seatNumber + " canceled");
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -34,12 +46,15 @@ public class Seat implements Comparable<Seat>{
     public String getSeatNumber() {
         return seatNumber;
     }
-     public double getPrice(){
+
+    public double getPrice() {
         return price;
-     }
+    }
+
 
     @Override
     public int compareTo(Seat seat) {
         return this.seatNumber.compareToIgnoreCase(seat.getSeatNumber());
     }
+
 }

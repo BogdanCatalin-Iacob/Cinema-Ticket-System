@@ -13,16 +13,6 @@ public class Seat extends JToggleButton implements Comparable<Seat> {
         this.price = price;
     }
 
-//    public Seat(int x, int y, int width, int height,String seatNumber, double price) {
-//        super(seatNumber);
-//        this.price = price;
-//        setBounds(x, y, width, height);
-//
-////        this.gui = gui;
-////        this.gui.add(this);
-//        addActionListener(this);
-//    }
-
     public boolean reserve() {
         if (!this.reserved) {
             this.reserved = true;

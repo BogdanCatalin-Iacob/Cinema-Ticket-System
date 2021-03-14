@@ -1,16 +1,20 @@
-package bogdan.iacob;
+package com.bogdan.iacob;
 
-import javax.swing.*;
+import java.util.List;
 
-public class Seat extends JToggleButton implements Comparable<Seat> {
-
-    private static String seatNumber;
-    private double price;
+public class Seat implements Comparable<Seat> {
+    private static double price;
+    private final String seatNumber;
     private boolean reserved = false;
 
     public Seat(String seatNumber, double price) {
         this.seatNumber = seatNumber;
         this.price = price;
+    }
+
+    @Override
+    public int compareTo(Seat seat) {
+        return this.seatNumber.compareToIgnoreCase(seat.getSeatNumber());
     }
 
     public boolean reserve() {
@@ -26,7 +30,7 @@ public class Seat extends JToggleButton implements Comparable<Seat> {
     public boolean cancel() {
         if (this.reserved) {
             this.reserved = false;
-            System.out.println("Reservation of seat " + seatNumber + " canceled");
+            System.out.println("Reservation of seat " + seatNumber + " cancelled");
             return true;
         } else {
             return false;
@@ -37,14 +41,19 @@ public class Seat extends JToggleButton implements Comparable<Seat> {
         return seatNumber;
     }
 
-    public double getPrice() {
+    public static double getPrice() {
         return price;
     }
 
-
-    @Override
-    public int compareTo(Seat seat) {
-        return this.seatNumber.compareToIgnoreCase(seat.getSeatNumber());
+    public boolean isReserved() {
+        return reserved;
     }
 
+    // delete after I set prices on areas
+    public static void printList(List<Seat> list) {
+        for (Seat seat : list) {
+            System.out.print(" " + seat.getSeatNumber() + " £" + seat.getPrice());
+        }
+    }
 }
+
